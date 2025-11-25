@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#667eea">
+    <title>תיקי השקעות INVESTOR 360° - מצגת עיצוב שוק הון מלא</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .navigation {
+            padding: 20px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 40px;
+            background: #e5e7eb;
+        }
+
+        .nav-label {
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+            margin-left: 10px;
+        }
+
+        .nav-label.low {
+            color: #059669;
+        }
+
+        .nav-label.medium {
+            color: #d97706;
+        }
+
+        .nav-label.high {
+            color: #dc2626;
+        }
+
+        .nav-btn {
+            padding: 8px 18px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            color: #374151;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875em;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .nav-btn:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+            transform: translateY(-1px);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.98);
+        }
+
+        .nav-btn.active {
+            background: #1e3c72;
+            color: white;
+            border-color: #1e3c72;
+        }
+
+        .nav-btn.home-btn, .nav-btn.summary-btn {
+            background: #1e3c72;
+            color: white;
+            border-color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .nav-btn.home-btn:hover, .nav-btn.summary-btn:hover {
+            background: #2a5298;
+            border-color: #2a5298;
+        }
+
+        .nav-btn.summary-btn {
+            background: #dc2626;
+            border-color: #dc2626;
+        }
+
+        .nav-btn.summary-btn:hover {
+            background: #b91c1c;
+            border-color: #b91c1c;
+        }
+
+        .content {
+            padding: 30px 40px;
+            min-height: auto;
+            max-height: calc(100vh - 280px);
+            overflow-y: auto;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-title {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .slide-subtitle {
+            color: #6b7280;
+            font-size: 1em;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .info-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            flex: 1;
+            min-width: 200px;
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .info-label {
+            font-size: 0.875em;
+            color: #6b7280;
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1e3c72;
+        }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 10px 0;
+            border: 2px solid;
+        }
+
+        .risk-low {
+            background: #d1fae5;
+            color: #065f46;
+            border-color: #059669;
+        }
+
+        .risk-medium {
+            background: #fef3c7;
+            color: #92400e;
+            border-color: #d97706;
+        }
+
+        .risk-high {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #dc2626;
+        }
+
+        .section-title {
+            color: #1e3c72;
+            font-size: 1.2em;
+            margin: 20px 0 12px 0;
+            font-weight: 700;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .text-content {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+
+        .text-content p {
+            margin-bottom: 12px;
+        }
+
+        .list-content {
+            background: #f9fafb;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .list-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-content li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.95em;
+            color: #374151;
+        }
+
+        .list-content li:last-child {
+            border-bottom: none;
+        }
+
+
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .summary-table {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            min-width: 100%;
+        }
+
+        .summary-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            gap: 20px;
+            align-items: center;
+            min-width: 600px;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row:first-child {
+            background: #1e3c72;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-row:hover:not(:first-child) {
+            background: #f9fafb;
+        }
+
+        .steps-box {
+            background: #f9fafb;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #e5e7eb;
+        }
+
+        .steps-box ol {
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .steps-box li {
+            padding: 8px 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #374151;
+        }
+
+        .steps-box li::marker {
+            color: #1e3c72;
+            font-weight: 700;
+        }
+
+        .footer {
+            background: #f9fafb;
+            color: #6b7280;
+            text-align: center;
+            padding: 30px;
+            font-size: 1em;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer strong {
+            color: #1e3c72;
+            font-weight: 700;
+        }
+
+        .home-wrapper {
+            max-width: 900px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .home-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .home-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .home-title {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .home-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 25px;
+        }
+
+        .risk-cards {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .risk-card {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            min-width: 130px;
+        }
+
+        .home-footer {
+            margin-top: 25px;
+            color: #6b7280;
+            font-size: 1em;
+        }
+
+        .hide-mobile {
+            display: inline;
+        }
+
+        .mobile-scroll-hint {
+            display: none;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px dashed #d1d5db;
+        }
+
+        /* הגדלת גודלים למסכים גדולים מאוד */
+        @media (min-width: 1400px) {
+            .content {
+                max-height: calc(100vh - 300px);
+            }
+            
+            .slide-title {
+                font-size: 2em;
+            }
+            
+            .slide-subtitle {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 10px;
+            }
+
+            .nav-group {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-divider {
+                display: none;
+            }
+
+            .nav-label {
+                width: 100%;
+                text-align: center;
+                margin: 8px 0 5px 0;
+                font-size: 0.85em;
+            }
+
+            .nav-btn {
+                padding: 12px 18px;
+                font-size: 0.9em;
+                min-width: auto;
+                touch-action: manipulation;
+            }
+
+            .nav-btn.home-btn, .nav-btn.summary-btn {
+                padding: 14px 24px;
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .slide-title {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+
+            .slide-subtitle {
+                font-size: 1em;
+                margin-bottom: 25px;
+            }
+
+            .info-box {
+                padding: 20px 15px;
+            }
+
+            .info-row {
+                gap: 15px;
+            }
+
+            .info-item {
+                min-width: 100%;
+                padding: 15px;
+            }
+
+            .info-label {
+                font-size: 0.8em;
+            }
+
+            .info-value {
+                font-size: 1.3em;
+            }
+
+            .section-title {
+                font-size: 1.2em;
+                margin: 25px 0 15px 0;
+            }
+
+            .text-content {
+                font-size: 1em;
+                line-height: 1.7;
+            }
+
+            .mobile-scroll-hint {
+                display: block;
+            }
+
+            .table-wrapper {
+                margin-top: 15px;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                position: relative;
+            }
+
+            .table-wrapper::after {
+                content: '→';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background: linear-gradient(to left, rgba(255,255,255,0.95), transparent);
+                padding: 10px 15px 10px 30px;
+                font-size: 1.5em;
+                color: #667eea;
+                pointer-events: none;
+                animation: slideHint 2s ease-in-out infinite;
+            }
+
+            @keyframes slideHint {
+                0%, 100% { opacity: 0.3; }
+                50% { opacity: 1; }
+            }
+
+            .summary-table {
+                border-radius: 12px;
+            }
+
+            .summary-row {
+                grid-template-columns: 2fr 1.2fr 1fr 1.2fr;
+                gap: 12px;
+                padding: 15px 12px;
+                min-width: 550px;
+                font-size: 0.9em;
+            }
+
+            .summary-row:first-child {
+                font-size: 0.75em;
+                padding: 12px;
+                position: sticky;
+                right: 0;
+                z-index: 1;
+            }
+
+            .risk-badge {
+                font-size: 0.75em;
+                padding: 4px 10px;
+                white-space: nowrap;
+            }
+
+            .summary-row div {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .summary-row div:first-child {
+                white-space: normal;
+                min-width: 180px;
+            }
+
+            .list-content {
+                padding: 20px;
+            }
+
+            .list-content li {
+                font-size: 1em;
+                padding: 12px 0;
+            }
+
+            .steps-box {
+                padding: 20px;
+            }
+
+            .steps-box li {
+                font-size: 1em;
+                padding: 10px 0;
+                line-height: 1.6;
+            }
+
+            .footer {
+                padding: 25px 15px;
+                font-size: 0.95em;
+            }
+
+            /* דף הבית למובייל */
+            .home-wrapper {
+                margin: 30px auto;
+            }
+
+            .home-box {
+                padding: 40px 20px;
+                border-radius: 15px;
+            }
+
+            .home-icon {
+                font-size: 3em;
+                margin-bottom: 15px;
+            }
+
+            .home-title {
+                font-size: 1.6em;
+                margin-bottom: 15px;
+            }
+
+            .home-description {
+                font-size: 1.1em;
+                line-height: 1.6;
+                margin-bottom: 25px;
+            }
+
+            .hide-mobile {
+                display: none;
+            }
+
+            .risk-cards {
+                gap: 12px;
+                margin-top: 30px;
+            }
+
+            .risk-card {
+                padding: 18px 24px;
+                min-width: 120px;
+            }
+
+            .home-footer {
+                margin-top: 30px;
+                font-size: 1em;
+            }
+
+            /* שיפורים למסך קטן מאוד */
+        }
+
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.4em;
+            }
+
+            .nav-btn {
+                padding: 10px 14px;
+                font-size: 0.85em;
+            }
+
+            .slide-title {
+                font-size: 1.3em;
+            }
+
+            .info-item {
+                padding: 12px;
+            }
+
+            .home-box {
+                padding: 30px 15px;
+            }
+
+            .home-icon {
+                font-size: 2.5em;
+            }
+
+            .home-title {
+                font-size: 1.4em;
+            }
+
+            .risk-card {
+                padding: 15px 20px;
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 תיקי ההשקעות שלנו</h1>
+            <p>פתרונות מותאמים אישית לכל פרופיל סיכון</p>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn home-btn active" onclick="showSlide(0)">דף הבית</button>
+            <button class="nav-btn summary-btn" onclick="showSlide(10)">סיכום</button>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-group">
+                <span class="nav-label low">נמוך</span>
+                <button class="nav-btn" onclick="showSlide(1)">אג"ח</button>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-group">
+                <span class="nav-label medium">בינוני</span>
+                <button class="nav-btn" onclick="showSlide(2)">50/50</button>
+                <button class="nav-btn" onclick="showSlide(3)">30/70</button>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-group">
+                <span class="nav-label high">גבוה</span>
+                <button class="nav-btn" onclick="showSlide(4)">ישראל פאסיבי</button>
+                <button class="nav-btn" onclick="showSlide(5)">ארה"ב פאסיבי</button>
+                <button class="nav-btn" onclick="showSlide(6)">ישראל אקטיבי</button>
+                <button class="nav-btn" onclick="showSlide(7)">דיבידנד</button>
+                <button class="nav-btn" onclick="showSlide(8)">קרנות</button>
+                <button class="nav-btn" onclick="showSlide(9)">ETFs</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- סלייד 1 - דף הבית -->
+            <div class="slide active" id="slide-0">
+                <h2 class="slide-title">תיקי ההשקעות שלנו</h2>
+                <p class="slide-subtitle">פתרונות מותאמים אישית לכל פרופיל סיכון</p>
+
+                <div class="home-wrapper">
+                    <div class="home-box">
+                        <div class="home-icon">💼</div>
+                        <h3 class="home-title">INVESTOR 360°</h3>
+                        <p class="home-description">
+                            אנו מציגים בפניכם מגוון תיקי השקעות מותאמים אישית,<br class="hide-mobile">
+                            המעוצבים לפי עקרונות שוק ההון המתקדמים ביותר
+                        </p>
+                        <div class="risk-cards">
+                            <div class="risk-card">
+                                <div style="color: #059669; font-weight: 700; font-size: 1.1em; margin-bottom: 5px;">סיכון נמוך</div>
+                                <div style="color: #6b7280; font-size: 0.95em;">1 מסלול</div>
+                            </div>
+                            <div class="risk-card">
+                                <div style="color: #d97706; font-weight: 700; font-size: 1.1em; margin-bottom: 5px;">סיכון בינוני</div>
+                                <div style="color: #6b7280; font-size: 0.95em;">2 מסלולים</div>
+                            </div>
+                            <div class="risk-card">
+                                <div style="color: #dc2626; font-weight: 700; font-size: 1.1em; margin-bottom: 5px;">סיכון גבוה</div>
+                                <div style="color: #6b7280; font-size: 0.95em;">6 מסלולים</div>
+                            </div>
+                        </div>
+                        <p class="home-footer">
+                            השתמש בתפריט הניווט למעלה לעיון במסלולים השונים
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- סלייד 2 - אג"ח -->
+            <div class="slide" id="slide-1">
+                <h2 class="slide-title">תיק אג"ח חברות ישראל</h2>
+                <p class="slide-subtitle">תיק אג"ח מפוזר ומגוון בשוק הישראלי</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">500,000 ש"ח</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0.5%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-low">נמוכה</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>תיק המורכב מאג"ח קונצרני בשוק הישראלי בלבד (במצבים מסוימים בהתאם לתנאי השוק נשלב אג"ח ממשלתי). האג"ח יקנו במשקל שווה ויבוצע איזון פעם בשנה עם סיום דיווחים שנתיים של החברות בישראל. במהלך השנה נפעל לניצול הזדמנויות בהתאם למרווחי האג"ח ותנאי הריבית בישראל וברמת הסיכון של החברות.</p>
+                </div>
+
+                <h3 class="section-title">איתנות פיננסית להורדת הסיכון</h3>
+                <div class="text-content">
+                    <p>אג"ח בעלות דירוג A ומעלה, ודירוג פנימי של אינווסטור 360 לחוסנם הפיננסי, לא להסתמך בלבד על חברות הדירוג שבדרך כלל מגיבות באיחור בשינוי הדירוג במצב של התדרדרות במצבם הפיננסי של החברות.</p>
+                </div>
+
+                <h3 class="section-title">גיוון ופיזור</h3>
+                <div class="list-content">
+                    <ul>
+                        <li>רכישה בעיקר אג"ח אחת מכל מנפיק</li>
+                        <li>משקל שווה (ככל שניתן) לכל אג"ח בתיק</li>
+                    </ul>
+                </div>
+
+                <h3 class="section-title">ניצול הזדמנויות בשוק האג"ח</h3>
+                <div class="text-content">
+                    <p>מתאים לתקופה בה הריבית גבוהה ועם ציפיות לירידות ריבית. המאפשר תגמול בסיס גבוה יחסי ואפשרות לרווחי הון נוספים בעקבות ירידות ריבית.</p>
+                    <p>מתאים לתקופה בה המרווחים בין אג"ח ממשלתי לקונצרני גבוה באופן משמעותי ממרווח נורמלי.</p>
+                </div>
+            </div>
+
+            <!-- סלייד 3 - משולב 50/50 -->
+            <div class="slide" id="slide-2">
+                <h2 class="slide-title">תיק משולב 50/50</h2>
+                <p class="slide-subtitle">אג"ח ישיר + קרנות אינווסטור</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">800,000 ש"ח</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-medium">בינונית</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>תיק משולב אג"ח קונצרני ישיר + עד 50% מניות מציע פתרון השקעה מאוזן המשלב בין יציבות רכיב האג"ח לבין חשיפה מנייתית חכמה ומבוקרת.</p>
+                    <p>רכיב האג"ח מנוהל ישירות, תוך בחירה קפדנית של אג"ח קונצרני איכותי, פיזור רחב וניהול מח"מ בהתאם לסביבת הריבית והסיכון.</p>
+                    <p>החלק המנייתי, המנוהל באמצעות שלוש קרנות אינווסטור360, מבוסס על מודלים חכמים הכוללים בחירה איכותית, משקל שווה וריבלנס שנתי, לצד גמישות בין מניות ישראל וחו״ל. שילוב זה יוצר תיק פיזור גבוה, איזון נכון בין יציבות לצמיחה, והזדמנות ליהנות מהכנסה שוטפת לצד פוטנציאל תשואה מבוקר לאורך זמן.</p>
+                </div>
+            </div>
+
+            <!-- סלייד 4 - משולב 30/70 -->
+            <div class="slide" id="slide-3">
+                <h2 class="slide-title">תיק משולב 30/70</h2>
+                <p class="slide-subtitle">אג"ח ישיר + קרן מניות גמישה</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">800,000 ש"ח</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0.4%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-medium">בינונית</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>תיק השקעות אג"ח קונצרני ישיר + עד 30% מניות – אינווסטור360 נבנה עבור משקיעים המחפשים יציבות גבוהה לצד חשיפה מנייתית מתונה ומבוקרת.</p>
+                    <p>רכיב האג"ח מבוסס על השקעה ישירה באג"ח קונצרני איכותי, עם בחירה קפדנית של סדרות חזקות, פיזור רחב וניהול מח"מ מותאם לתנאי השוק. לצד זאת, החשיפה המנייתית — עד 30% — מתבצעת באמצעות קרן הנאמנות הגמישה של אינווסטור360, המשלבת בין מניות ישראל וחו״ל בניהול אקטיבי ויכולת התאמה דינמית למצבי שוק משתנים.</p>
+                    <p>השילוב בין יציבות האג"ח לבין הגמישות והערך של הרכיב המנייתי יוצר תיק סולידי, חכם ומאוזן, המעניק פוטנציאל תשואה לצד שמירה על רמת סיכון נמוכה יחסית.</p>
+                </div>
+
+                <h3 class="section-title">לשים לב</h3>
+                <div class="text-content">
+                    <p><strong>לא ניתן לנהל דרך IRA</strong></p>
+                </div>
+            </div>
+
+            <!-- סלייד 5 - מניות ישראל פאסיבי -->
+            <div class="slide" id="slide-4">
+                <h2 class="slide-title">מניות ישראל פאסיבי</h2>
+                <p class="slide-subtitle">מדד מניות חכם בשוק הישראלי</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">400,000 ש"ח</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0.8%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-high">גבוהה</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>מודל מניות חכם – אינווסט360 מבוסס על אלגוריתם מתקדם שמדרג חברות ישראליות לפי איכות פיננסית, רווחיות, צמיחה ואיתנות לאורך שנים. במקום להשקיע במדדים רחבים שמכילים גם חברות חלשות, המודל מתמקד בהשקעה ישירה במניות איכותיות בלבד — כאלה שהוכיחו יציבות והובלה מתמשכת בתחומן. כל חברה עוברת תהליך סינון מעמיק, שמטרתו לזהות את המצטיינות ולסנן סיכונים סמויים. כך נבנה תיק מניות ממוקד, מצטיין ומפוזר בצורה חכמה, המגדיל את ההסתברות לתשואות גבוהות ויציבות לאורך זמן.</p>
+                </div>
+
+                <h3 class="section-title">תהליך הבחירה במודל</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li>סינון חברות בעלות שווי שוק גבוה ו־5 שנות פעילות לפחות</li>
+                        <li>דירוג אלגוריתמי לפי רווחיות, תשואות, צמיחה ואיתנות פיננסית</li>
+                        <li>בדיקת "אורות אדומים" לזיהוי סיכונים נסתרים</li>
+                        <li>בחירת החברות המצטיינות בלבד והשקעה בהן ישירות במשקל שווה</li>
+                        <li>בחינה ועדכון אחת לשנה בהתאם לביצועי החברות</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- סלייד 6 - מניות ארה"ב פאסיבי -->
+            <div class="slide" id="slide-5">
+                <h2 class="slide-title">מניות ארה"ב פאסיבי</h2>
+                <p class="slide-subtitle">מדד מניות חכם בשוק האמריקאי</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">150,000 דולר</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0.8%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-high">גבוהה</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>מודל מניות חכם – אינווסט360 מבוסס על אלגוריתם מתקדם שמדרג חברות אמריקאיות לפי איכות פיננסית, רווחיות, צמיחה ואיתנות לאורך שנים. במקום להשקיע במדדים רחבים שמכילים גם חברות חלשות, המודל מתמקד בהשקעה ישירה במניות איכותיות בלבד — כאלה שהוכיחו יציבות והובלה מתמשכת בתחומן. כל חברה עוברת תהליך סינון מעמיק, שמטרתו לזהות את המצטיינות ולסנן סיכונים סמויים. כך נבנה תיק מניות ממוקד, מצטיין ומפוזר בצורה חכמה, המגדיל את ההסתברות לתשואות גבוהות ויציבות לאורך זמן.</p>
+                </div>
+
+                <h3 class="section-title">תהליך הבחירה במודל</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li>סינון חברות בעלות שווי שוק גבוה ו־5 שנות פעילות לפחות</li>
+                        <li>דירוג אלגוריתמי לפי רווחיות, תשואות, צמיחה ואיתנות פיננסית</li>
+                        <li>בדיקת "אורות אדומים" לזיהוי סיכונים נסתרים</li>
+                        <li>בחירת החברות המצטיינות בלבד והשקעה בהן ישירות במשקל שווה</li>
+                        <li>בחינה ועדכון אחת לשנה בהתאם לביצועי החברות</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- סלייד 7 - מניות ישראל אקטיבי -->
+            <div class="slide" id="slide-6">
+                <h2 class="slide-title">מניות ישראל אקטיבי</h2>
+                <p class="slide-subtitle">תיק השקעות מניות ערך</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">1,000,000 ש"ח</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">1.2%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-high">גבוהה</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>תיק השקעות מניות ישראל אקטיבי – אינווסט360 מבוסס על ניתוח עומק של החברות הנסחרות בבורסה המקומית, עם יכולת להתמקד גם בחברות בינוניות וקטנות בעלות פוטנציאל משמעותי לצמיחה.</p>
+                    <p>אנו שמים דגש על איכות, איתנות פיננסית, רווחיות ותזרים יציב לאורך שנים, לצד בחינה של הנהלות החברות והיתרון התחרותי שלהן. כל מניה נבחרת לאחר הערכה מדויקת של שוויה הפנימי מול מחיר השוק, במטרה לזהות פערי ערך מהותיים.</p>
+                    <p>הגישה האקטיבית שלנו מבוססת על מחקר מתמשך, פיקוח שוטף ומוכנות להגיב במהירות לאירועים בשוק. התוצאה היא תיק ישראלי איכותי, מפוזר וחכם, שמטרתו להשיג תשואה לאורך זמן ולנצל הזדמנויות ייחודיות בשוק המקומי.</p>
+                </div>
+            </div>
+
+            <!-- סלייד 8 - מניות דיבידנד -->
+            <div class="slide" id="slide-7">
+                <h2 class="slide-title">מניות ישראל דיבידנד</h2>
+                <p class="slide-subtitle">תיק נבחרת מניות דיבידנד אקטיבי</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">500,000 ש"ח</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0.8%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-high">גבוהה</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>התמקדות בחברות ישראליות בעלות פוטנציאל צמיחה גבוה הצפויות להציף ערך משמעותי למשקיעים, לצד חלוקת דיבידנד יציבה, איכותית וגבוהה.</p>
+                    <p>הדגש מושם על חברות בעלות תזרים חזק, רווחיות עקבית, הנהלה איכותית ויתרון תחרותי ברור, המאפשרים להן להמשיך לצמוח ולהגדיל את שווי החברה לאורך זמן. הניתוח כולל בחינת איתנות פיננסית, מבנה שוק, תחזיות צמיחה ויכולת לשמר מדיניות דיבידנד גם בתקופות תנודתיות.</p>
+                    <p>באמצעות ניהול אקטיבי ומעקב שוטף אחרי הערכות שווי ונתוני שוק, אנו בוחרים את החברות בעלות הפוטנציאל הגבוה ביותר להצפת ערך יחד עם הכנסה שוטפת אמינה.</p>
+                    <p>התוצאה היא תיק מניות ישראלי איכותי, מפוזר ומניב — המשלב צמיחה מהותית עם דיבידנד יציב לאורך זמן.</p>
+                </div>
+            </div>
+
+            <!-- סלייד 9 - תיק קרנות -->
+            <div class="slide" id="slide-8">
+                <h2 class="slide-title">תיק קרנות</h2>
+                <p class="slide-subtitle">תיק קרנות נאמנות אינווסטור 360</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">300,000 ש"ח</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-high">גבוהה</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>ניהול תיק ההשקעות של אינווסטור360 נשען על שילוב של שלוש קרנות נאמנות משלימות, המעניקות איזון בין עומק מחקרי, איכות בחירה ופיזור רחב.</p>
+                    <p>קרן מודל מניות חכם אמריקאי וקרן מודל מניות חכם ישראל מבוססות על ניהול פאסיבי חכם: בחירת החברות האיכותיות ביותר באמצעות מתודולוגיית דירוג מתקדמת, רכישתן במשקל שווה וביצוע ריבלנס אחת לשנה לשמירה על איזון ואיכות התיק.</p>
+                    <p>לצידן, קרן המודל הגמיש משלבת באופן אקטיבי בין מניות ישראל למניות חו״ל, תוך ניהול דינמי המותאם למצבי השוק. שלוש הקרנות יחד יוצרות תיק מפוזר, יציב וחכם — המשלב בחירה איכותית, ניתוח עומק ומנגנון בנייה עקבי שמטרתו למקסם ערך לאורך זמן.</p>
+                </div>
+            </div>
+
+            <!-- סלייד 10 - תיק ETFs -->
+            <div class="slide" id="slide-9">
+                <h2 class="slide-title">תיק מניות ETFs</h2>
+                <p class="slide-subtitle">מדדי מניות ראשיים וסקטוריאליים בארה"ב</p>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-label">מינימום השקעה</div>
+                            <div class="info-value">150,000 דולר</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">דמי ניהול</div>
+                            <div class="info-value">0.6%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">רמת סיכון</div>
+                            <div class="info-value"><span class="risk-badge risk-high">גבוהה</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">תוכן</h3>
+                <div class="text-content">
+                    <p>מודל ETFs Shiller מבוסס על תובנותיו של פרופ' רוברט שילר, המזהות תקופות של תמחור יתר או חסר בשוק ומאפשרות בחירה מושכלת של תחומים מתומחרים בזול. במקום להישען על מדדים פופולריים כמו S&P 500, שלעיתים מוטים לסקטור מסוים ומתומחרים גבוה, המודל מנתח את רמת התמחור, הרווחיות והצמיחה בכל סקטור בנפרד.</p>
+                    <p>ניהול התיק מבוצע באמצעות שילוב של מדדים ראשיים וסקטוריאליים בשוק האמריקאי, תוך בחירה בקרנות סל איכותיות בלבד בכל תחום. כך מושג פיזור רחב, הפחתת סיכון והגדלת יציבות לאורך זמן. המודל נשען על נתונים אמיתיים, מחקר רב־שנתי והסתברות — ולא על תחושות בטן — במטרה לייצר תיק יעיל, חכם ומותאם לשוק המשתנה.</p>
+                </div>
+            </div>
+
+            <!-- סלייד 11 - סיכום -->
+            <div class="slide" id="slide-10">
+                <h2 class="slide-title">📊 סיכום כל המסלולים</h2>
+                <p class="slide-subtitle">השוואה מקיפה של כל תיקי ההשקעות</p>
+                <p class="mobile-scroll-hint">← גלול לצדדים לצפייה בכל העמודות →</p>
+
+                <div class="table-wrapper">
+                    <div class="summary-table">
+                    <div class="summary-row">
+                        <div>שם המסלול</div>
+                        <div>מינימום השקעה</div>
+                        <div>דמי ניהול</div>
+                        <div>רמת סיכון</div>
+                    </div>
+                    <div class="summary-row">
+                        <div>אג"ח חברות ישראל</div>
+                        <div>500,000 ש"ח</div>
+                        <div>0.5%</div>
+                        <div><span class="risk-badge risk-low">נמוך</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>תיק משולב 50/50</div>
+                        <div>800,000 ש"ח</div>
+                        <div>0%</div>
+                        <div><span class="risk-badge risk-medium">בינוני</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>תיק משולב 30/70</div>
+                        <div>800,000 ש"ח</div>
+                        <div>0.4%</div>
+                        <div><span class="risk-badge risk-medium">בינוני</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>מניות ישראל פאסיבי</div>
+                        <div>400,000 ש"ח</div>
+                        <div>0.8%</div>
+                        <div><span class="risk-badge risk-high">גבוה</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>מניות ארה"ב פאסיבי</div>
+                        <div>150,000$</div>
+                        <div>0.8%</div>
+                        <div><span class="risk-badge risk-high">גבוה</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>מניות ישראל אקטיבי</div>
+                        <div>1,000,000 ש"ח</div>
+                        <div>1.2%</div>
+                        <div><span class="risk-badge risk-high">גבוה</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>מניות דיבידנד</div>
+                        <div>500,000 ש"ח</div>
+                        <div>0.8%</div>
+                        <div><span class="risk-badge risk-high">גבוה</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>תיק קרנות אינווסטור</div>
+                        <div>300,000 ש"ח</div>
+                        <div>0%</div>
+                        <div><span class="risk-badge risk-high">גבוה</span></div>
+                    </div>
+                    <div class="summary-row">
+                        <div>תיק מניות ETFs</div>
+                        <div>150,000$</div>
+                        <div>0.6%</div>
+                        <div><span class="risk-badge risk-high">גבוה</span></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <strong>INVESTOR 360°</strong> | www.investor360.co.il
+        </div>
+    </div>
+
+    <script>
+        function showSlide(index) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected slide
+            document.getElementById(`slide-${index}`).classList.add('active');
+            
+            // Add active class to clicked button - find the button that calls showSlide(index)
+            buttons.forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes(`showSlide(${index})`)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const activeSlide = document.querySelector('.slide.active');
+            if (!activeSlide) return;
+            
+            const slideId = activeSlide.id;
+            const currentIndex = parseInt(slideId.split('-')[1]);
+
+            if (e.key === 'ArrowRight' && currentIndex > 0) {
+                showSlide(currentIndex - 1);
+            } else if (e.key === 'ArrowLeft' && currentIndex < 10) {
+                showSlide(currentIndex + 1);
+            }
+        });
+
+        // Remove scroll hint after scrolling
+        const tableWrapper = document.querySelector('.table-wrapper');
+        if (tableWrapper) {
+            tableWrapper.addEventListener('scroll', function() {
+                if (this.scrollLeft > 10) {
+                    this.style.setProperty('--scrolled', '1');
+                    const style = document.createElement('style');
+                    style.innerHTML = '.table-wrapper::after { display: none; }';
+                    document.head.appendChild(style);
+                }
+            }, { once: true });
+        }
+    </script>
+</body>
+</html>
